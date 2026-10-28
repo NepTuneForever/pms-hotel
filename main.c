@@ -18,6 +18,10 @@ TODO:
 */
 
 int main() {
+    hospede *hospedes = (hospede *) malloc(sizeof(hospede));
+
+    hospede h1 = cadastrar_hospedes("Filipe", 18);
+    hospedes[0] = h1;
 
     return 0;
 }

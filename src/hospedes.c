@@ -3,6 +3,11 @@
 
 // Filipe Paredes //
 
+typedef struct hospede {
+    char *nome;
+    int idade;
+} hospede;
+
 /*
 
 TODO: 
@@ -12,3 +17,15 @@ TODO:
     Editar hospedes;
 
 */
+
+hospede cadastrar_hospedes(char nome[], int idade) {
+    hospede hosp;
+    hosp.nome = nome;
+    hosp.idade = idade;
+
+    return hosp;
+}
+
+void listar_hospedes() {
+
+}

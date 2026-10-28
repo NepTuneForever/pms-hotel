@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 // Serviços: //
-#include "src/quartos.c"
-#include "src/hospedes.c"
-#include "src/reservas.c"
+#include "quartos.h"
+#include "hospedes.h"
+#include "reservas.h"
 
 /*
 
@@ -17,11 +17,12 @@ TODO:
 
 */
 
-int main() {
-    hospede *hospedes = (hospede *) malloc(sizeof(hospede));
+int main()
+{
+    hospede h1 = cadastrar_hospede(1, "Filipe", 18);
 
-    hospede h1 = cadastrar_hospedes("Filipe", 18);
-    hospedes[0] = h1;
-
+    hospede hosp = buscar_hospede(1);
+    printf("%s %d\n", hosp.nome, hosp.idade);
+    
     return 0;
 }

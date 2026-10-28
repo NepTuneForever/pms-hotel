@@ -1,31 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Filipe Paredes //
+#include "hospedes.h"
+#include "quartos.h"
 
-typedef struct hospede {
-    char *nome;
-    int idade;
-} hospede;
+// Filipe Paredes //
 
 /*
 
 TODO: 
-    Cadastrar hospede;
-    Listar hospedes;
-    Buscar hospedes;
-    Editar hospedes;
+    cadastrar_hospede;
+    listar_hospedes;
+    buscar_hospede;
+    editar_hospedes;
 
 */
 
-hospede cadastrar_hospedes(char nome[], int idade) {
+hospede hospedes[100];
+
+hospede cadastrar_hospede(int id, char nome[], int idade)
+{
     hospede hosp;
+    hosp.id = id;
     hosp.nome = nome;
     hosp.idade = idade;
 
+    hospedes[id] = hosp;
     return hosp;
 }
 
-void listar_hospedes() {
-
+hospede buscar_hospede(int id)
+{
+    return hospedes[id];
 }

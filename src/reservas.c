@@ -6,9 +6,10 @@
 /*
 
 TODO: 
-    Criar reserva;
-    Listar reservas;
-    Cancelar reserva;
-    Realizar Check in/out;
+    criar_reserva;
+    listar_reservas;
+    cancelar_reserva;
+    realizar_check_in;
+    realizar_check_out;
 
 */

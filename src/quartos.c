@@ -6,9 +6,9 @@
 /*
 
 TODO: 
-    Cadastrar quarto;
-    Listar quartos;
-    Buscar quarto;
-    Consultarr quartos;
+    cadastrar_quarto;
+    listar_quartos;
+    buscar_quarto;
+    consultar_quartos;
 
 */

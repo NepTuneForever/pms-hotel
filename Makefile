@@ -4,7 +4,7 @@ TARGET   	:= programa
 CC 		 	:= gcc
 PROJDIRS    := src
 INCLUDEDIR  := include # inclui o diretorio dos headers
-CFLAGS 	 	:= -std=c23 -g $(WARNINGS) -I $(INCLUDEDIR)
+CFLAGS 	 	:= -std=c23 -g $(WARNINGS) -MMD -MP -I $(INCLUDEDIR)
 SRCFILES 	:= $(shell find $(PROJDIRS) -type f -name "*.c") # encontra todo o codigo c
 OBJFILES 	:= $(patsubst %.c,%.o,$(SRCFILES))
 

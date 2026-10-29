@@ -4,19 +4,21 @@
 #include "hospedes.h"
 #include "quartos.h"
 
+#define MAX_HOSPEDES 50
+
 // Filipe Paredes //
 
 /*
 
 TODO: 
-    cadastrar_hospede;
-    listar_hospedes;
-    buscar_hospede;
+    cadastrar_hospede; /////////////////////
+    listar_hospedes; 
+    buscar_hospede; ////////////////////////
     editar_hospedes;
 
 */
 
-hospede hospedes[100];
+hospede hospedes[MAX_HOSPEDES];
 
 hospede cadastrar_hospede(int id, char nome[], int idade)
 {
@@ -32,4 +34,18 @@ hospede cadastrar_hospede(int id, char nome[], int idade)
 hospede buscar_hospede(int id)
 {
     return hospedes[id];
+}
+
+void listar_hospedes()
+{
+
+    for (int i = 1; i < MAX_HOSPEDES; i++)
+    {
+
+        if (hospedes[i].id != 0) 
+        {
+            printf("%d %s %d\n", hospedes[i].id, hospedes[i].nome, hospedes[i].idade);
+        }
+        
+    }
 }

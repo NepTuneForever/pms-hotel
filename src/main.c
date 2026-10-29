@@ -7,6 +7,9 @@
 #include "hospedes.h"
 #include "reservas.h"
 
+// Structs //
+
+
 /*
 
 TODO: 
@@ -20,9 +23,9 @@ TODO:
 int main()
 {
     hospede h1 = cadastrar_hospede(1, "Filipe", 18);
+    hospede h2 = cadastrar_hospede(2, "Maria", 18);
+    hospede h3 = cadastrar_hospede(3, "João", 18);
 
-    hospede hosp = buscar_hospede(1);
-    printf("%s %d\n", hosp.nome, hosp.idade);
-    
+    listar_hospedes();
     return 0;
 }

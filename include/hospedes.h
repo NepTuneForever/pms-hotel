@@ -3,7 +3,8 @@
 
 #include "quartos.h"
 
-typedef struct {
+typedef struct 
+{
     int id;
     char *nome;
     int idade;
@@ -12,6 +13,5 @@ typedef struct {
 hospede cadastrar_hospede(int id, char nome[], int idade);
 void listar_hospedes();
 hospede buscar_hospede(int id);
-void editar_hospedes();
 
 #endif

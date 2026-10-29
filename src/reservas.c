@@ -26,8 +26,6 @@ void painel_reservas()
         "|  [1] Criar reserva                                             |\n"
         "|  [2] Listar reservas                                           |\n"
         "|  [3] Cancelar reserva                                          |\n"
-        "|  [4] Realizar check-in                                         |\n"
-        "|  [5] Realizar check-out                                        |\n"
         "|                                                                |\n"
         "|  [0] Voltar                                                    |\n"
         "|                                                                |\n"

@@ -4,18 +4,7 @@
 #include "reservas.h"
 
 // José Paulo Romão //
-
-/*
-
-TODO: 
-    criar_reserva;
-    listar_reservas;
-    cancelar_reserva;
-    realizar_check_in;
-    realizar_check_out;
-
-*/
-
+//
 void painel_reservas()
 {
     printf(
@@ -33,3 +22,56 @@ void painel_reservas()
         "  Selecione uma opcao: "
     );
 }
+
+static Reserva reservas[MAX_RESERVAS];
+int atual = 0;
+
+void criar_reserva()
+{
+    Reserva res;
+}
+
+void listar_reservas()
+{
+    printf("Reservas: ");
+    for (int i = 0; i < MAX_RESERVAS; i++) {
+        Reserva res = reservas[i];
+        char* status;
+        switch (res.status) {
+            case RESERVA_DISPONIVEL:
+                status = "Disponivel";
+                break;
+            case RESERVA_OCUPADA:
+                status = "Ocupada";
+                break;
+        }
+        printf("Codigo: %d"
+                "Codigo Hospede: %d"
+                "Numero Quarto: %d"
+                "Data Entrada: %s"
+                "Data Saida: %s"
+                "Status: %s", 
+                    res.cod, 
+                    res.cod_hospede, 
+                    res.num_quarto, 
+                    res.data_entrada, 
+                    res.data_saida, 
+                    status);
+    }
+}
+
+void cancelar_reserva()
+{
+
+}
+
+void realizar_check_in()
+{
+
+}
+
+void realizar_check_out()
+{
+
+}
+

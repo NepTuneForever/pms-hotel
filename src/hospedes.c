@@ -36,6 +36,25 @@ hospede buscar_hospede(int id)
     return hospedes[id];
 }
 
+void painel_hospedes()
+{
+    printf(
+        "+================================================================+\n"
+        "|                  PMS HOTEL - PAINEL DE HOSPEDES                |\n"
+        "+================================================================+\n"
+        "|                                                                |\n"
+        "|  [1] Cadastrar hospede                                         |\n"
+        "|  [2] Listar hospedes                                           |\n"
+        "|  [3] Buscar hospede                                            |\n"
+        "|  [4] Editar hospede                                            |\n"
+        "|                                                                |\n"
+        "|  [0] Voltar                                                    |\n"
+        "|                                                                |\n"
+        "+================================================================+\n"
+        "  Selecione uma opcao: "
+    );
+}
+
 void listar_hospedes()
 {
 

@@ -7,25 +7,45 @@
 #include "hospedes.h"
 #include "reservas.h"
 
-// Structs //
-
-
-/*
-
-TODO: 
-    Laço de repetição;
-    Integrar o fluxo do sistema;
-    Opção de encerrar o programa;
-    Integrar todas as funcionalidades de cada componente do sistema;
-
-*/
-
 int main()
 {
-    hospede h1 = cadastrar_hospede(1, "Filipe", 18);
-    hospede h2 = cadastrar_hospede(2, "Maria", 18);
-    hospede h3 = cadastrar_hospede(3, "João", 18);
+    int opcao;
+    int loop = 1;
 
-    listar_hospedes();
+    while (loop) 
+    {
+        system("clear");
+        printf(
+            "+================================================================+\n"
+            "|                  PMS HOTEL - PAINEL PRINCIPAL                  |\n"
+            "+================================================================+\n"
+            "|                                                                |\n"
+            "|  [1] Hospedes                                                  |\n"
+            "|  [2] Quartos                                                   |\n"
+            "|  [3] Reservas                                                  |\n"
+            "|  [4] Check-in                                                  |\n"
+            "|  [5] Check-out                                                 |\n"
+            "|                                                                |\n"
+            "|  [0] Sair                                                      |\n"
+            "|                                                                |\n"
+            "+================================================================+\n"
+            "  Selecione uma opcao: "
+        );
+
+        scanf("%d", &opcao);
+        
+        switch (opcao)
+        {
+            case 0:
+                loop=0;
+                break;
+            case 1:
+                printf("Hospedes");
+                break;
+            
+        }
+
+    }
+
     return 0;
 }

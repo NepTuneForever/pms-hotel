@@ -10,6 +10,7 @@ typedef struct
     int idade;
 } hospede;
 
+void painel_hospedes();
 hospede cadastrar_hospede(int id, char nome[], int idade);
 void listar_hospedes();
 hospede buscar_hospede(int id);

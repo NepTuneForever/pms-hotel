@@ -6,6 +6,7 @@ typedef struct {
     int capmax; // capacidade maxima;
 } quarto;
 
+void painel_quartos();
 quarto cadastrar_quarto();
 void listar_quartos();
 quarto buscar_quarto(int numero);

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "reservas.h"
+
 // José Paulo Romão //
 
 /*
@@ -13,3 +15,23 @@ TODO:
     realizar_check_out;
 
 */
+
+void painel_reservas()
+{
+    printf(
+        "+================================================================+\n"
+        "|                  PMS HOTEL - PAINEL DE RESERVAS                |\n"
+        "+================================================================+\n"
+        "|                                                                |\n"
+        "|  [1] Criar reserva                                             |\n"
+        "|  [2] Listar reservas                                           |\n"
+        "|  [3] Cancelar reserva                                          |\n"
+        "|  [4] Realizar check-in                                         |\n"
+        "|  [5] Realizar check-out                                        |\n"
+        "|                                                                |\n"
+        "|  [0] Voltar                                                    |\n"
+        "|                                                                |\n"
+        "+================================================================+\n"
+        "  Selecione uma opcao: "
+    );
+}

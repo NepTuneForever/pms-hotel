@@ -1,0 +1,74 @@
+[
+  {
+    "file": "src/quartos.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-std=c23",
+      "-g",
+      "-MMD",
+      "-MP",
+      "-I",
+      "include",
+      "-c",
+      "src/quartos.c",
+      "-o",
+      "src/quartos.o"
+    ],
+    "directory": "/home/neptr/Programming/pms-hotel",
+    "output": "src/quartos.o"
+  },
+  {
+    "file": "src/hospedes.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-std=c23",
+      "-g",
+      "-MMD",
+      "-MP",
+      "-I",
+      "include",
+      "-c",
+      "src/hospedes.c",
+      "-o",
+      "src/hospedes.o"
+    ],
+    "directory": "/home/neptr/Programming/pms-hotel",
+    "output": "src/hospedes.o"
+  },
+  {
+    "file": "src/main.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-std=c23",
+      "-g",
+      "-MMD",
+      "-MP",
+      "-I",
+      "include",
+      "-c",
+      "src/main.c",
+      "-o",
+      "src/main.o"
+    ],
+    "directory": "/home/neptr/Programming/pms-hotel",
+    "output": "src/main.o"
+  },
+  {
+    "file": "src/reservas.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-std=c23",
+      "-g",
+      "-MMD",
+      "-MP",
+      "-I",
+      "include",
+      "-c",
+      "src/reservas.c",
+      "-o",
+      "src/reservas.o"
+    ],
+    "directory": "/home/neptr/Programming/pms-hotel",
+    "output": "src/reservas.o"
+  }
+]

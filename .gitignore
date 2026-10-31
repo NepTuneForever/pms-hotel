@@ -1,1 +1,4 @@
 *.exe
+# arquivos intermediarios gerados pelo compilador
+*.o 
+*.d

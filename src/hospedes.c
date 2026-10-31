@@ -18,7 +18,7 @@ TODO:
 
 */
 
-hospede hospedes[MAX_HOSPEDES];
+static hospede hospedes[MAX_HOSPEDES];
 
 hospede cadastrar_hospede(int id, char nome[], int idade)
 {

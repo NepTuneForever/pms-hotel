@@ -2,8 +2,9 @@
 #define QUARTOS_H
 
 typedef struct {
-    int num; // numero do quarto;
+    char num[20]; // numero do quarto;
     int capmax; // capacidade maxima;
+    int nump; // numero de pessoas;
 } quarto;
 
 void painel_quartos();

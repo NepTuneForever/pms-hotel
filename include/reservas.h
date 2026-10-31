@@ -4,15 +4,17 @@
 #define MAX_RESERVAS 50
 #define TAM_DATA 11
 
+#include "quartos.h"
+
 typedef enum {
-    RESERVA_DISPONIVEL = 1,
+    RESERVA_DISPONIVEL,
     RESERVA_OCUPADA,
 } StatusReserva;
 
 typedef struct {
     int cod;
     int cod_hospede;
-    int num_quarto;
+    quarto quarto; // Numero e Cap Maxima
     char data_entrada[TAM_DATA];
     char data_saida[TAM_DATA];
     StatusReserva status;

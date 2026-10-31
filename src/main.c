@@ -2,6 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// OS //
+#ifdef _WIN32
+    #define LIMPAR_TELA "cls"
+#else
+    #define LIMPAR_TELA "clear"
+#endif
+
 // Serviços: //
 #include "quartos.h"
 #include "hospedes.h"
@@ -12,12 +19,14 @@ int main()
     int opcao;
     int loop = 1;
     int painel = 0;
-
+    system(LIMPAR_TELA);
     while (loop) 
     {
-        system("clear");
+        
         switch (painel) 
         {
+
+            // Painel Principal
             case 0:
                 printf(
                     "+================================================================+\n"
@@ -44,15 +53,15 @@ int main()
                         loop=0;
                         break;
                     case 1:
-                        system("clear");
+                        system(LIMPAR_TELA);
                         painel=1;
                         break;
                     case 2:
-                        system("clear");
+                        system(LIMPAR_TELA);
                         painel=2;
                         break;
                     case 3:
-                        system("clear");
+                        system(LIMPAR_TELA);
                         painel=3;
                         break;
                     
@@ -60,6 +69,7 @@ int main()
 
                 break;
             
+            // Painel de Hospedes
             case 1:
                 getchar();
                 painel_hospedes();
@@ -69,12 +79,13 @@ int main()
                 switch (opcao)
                 {
                     case 0:
-                        system("clear");
+                        system(LIMPAR_TELA);
                         painel=0;
                         break;
                 }
             break;
 
+            // Painel de Quartos
             case 2:
                 getchar();
                 painel_quartos();
@@ -84,12 +95,13 @@ int main()
                 switch (opcao)
                 {
                     case 0:
-                        system("clear");
+                        system(LIMPAR_TELA);
                         painel=0;
                         break;
                 }
             break;
 
+            // Painel de reservas
             case 3:
                 getchar();
                 painel_reservas();
@@ -99,8 +111,18 @@ int main()
                 switch (opcao)
                 {
                     case 0:
-                        system("clear");
+                        system(LIMPAR_TELA);
                         painel=0;
+                        break;
+                    
+                    case 2:
+                        system(LIMPAR_TELA);
+                        listar_reservas();
+                        break;
+
+                    case 1:
+                        criar_reserva();
+                        system(LIMPAR_TELA);
                         break;
                 }
             break;

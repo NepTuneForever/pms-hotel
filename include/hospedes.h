@@ -8,6 +8,7 @@ typedef struct
     int id;
     char *nome;
     int idade;
+    quarto quarto;
 } hospede;
 
 void painel_hospedes();

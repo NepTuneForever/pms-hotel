@@ -4,6 +4,13 @@
 
 #include "reservas.h"
 
+// OS //
+#ifdef _WIN32
+    #define LIMPAR_TELA "cls"
+#else
+    #define LIMPAR_TELA "clear"
+#endif
+
 // José Paulo Romão //
 //
 void painel_reservas()
@@ -58,11 +65,13 @@ void criar_reserva()
                 printf("Digite a quantidade de pessoas(1-4): ");
                 scanf("%d", &qtdp);
 
-                if (qtdp > 4) 
+                if (qtdp > 4 || qtdp <= 0)
                 {
-                    printf("Opção Invalida, tente novamente;\n");
+                    printf("Insira um valor valido;\n");
+
+                    getchar();
                     printf("Pressione Enter para continuar;");
-                    getchar(); getchar();
+                    getchar();
                     return;
                 }
                 if (qtdp < 5)
@@ -83,31 +92,38 @@ void criar_reserva()
             int ano_entrada;
             int ano_saida;
 
-            printf("Digite o dia de entrada: ");
+            printf("[ENTRADA] Digite o dia(1-31): ");
             scanf("%d", &dia_entrada);
 
-            printf("Digite o mes de entrada: ");
+            printf("[ENTRADA] Digite o mes(1-12): ");
             scanf("%d", &mes_entrada);
 
-            printf("Digite o ano de entrada: ");
+            printf("[ENTRADA] Digite o ano(XXXX): ");
             scanf("%d", &ano_entrada);
 
-            printf("Digite o dia de saída: ");
+            printf("[SAIDA] Digite o dia(1-31): ");
             scanf("%d", &dia_saida);
 
-            printf("Digite o mes de saída: ");
+            printf("[SAIDA] Digite o mes(1-12): ");
             scanf("%d", &mes_saida);
 
-            printf("Digite o ano de saída: ");
+            printf("[SAIDA] Digite o ano(XXXX): ");
             scanf("%d", &ano_saida);
 
-            /////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             sprintf(res.data_entrada, "%02d/%02d/%d", dia_entrada, mes_entrada, ano_entrada);
             sprintf(res.data_saida, "%02d/%02d/%d", dia_saida, mes_saida, ano_saida);
 
             res.status = RESERVA_OCUPADA;
             reservas[i] = res;
+
+            printf("----------------------------------------------------------------------\n");
+            printf("Reserva cadastrada no sistema!\n"
+                   "Codigo da reserva: %d\n", res.cod);
+            getchar();
+            printf("Pressione Enter para continuar;");
+            getchar();
 
             break;
         }
@@ -142,20 +158,33 @@ void listar_reservas()
                     res.data_saida, 
                     status);
         printf("----------------------------------------------------------------------\n");
+
+    }
+
+    getchar();
+    printf("Pressione Enter para continuar;");
+    getchar();
+
+    system(LIMPAR_TELA);
+}
+
+void cancelar_reserva(int id)
+{
+    Reserva res = reservas[id - 1];
+
+    if (res.cod)
+    {
+        Reserva temp = {0};
+        reservas[id - 1] = temp;
     }
 }
 
-void cancelar_reserva()
+void realizar_check_in(int id)
 {
 
 }
 
-void realizar_check_in()
-{
-
-}
-
-void realizar_check_out()
+void realizar_check_out(int id)
 {
 
 }

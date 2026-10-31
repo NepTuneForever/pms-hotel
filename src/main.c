@@ -26,7 +26,7 @@ int main()
         switch (painel) 
         {
 
-            // Painel Principal
+            // Painel Principal //////////////////////////////////////////////////////////////////////////////////////////////////
             case 0:
                 printf(
                     "+================================================================+\n"
@@ -69,7 +69,7 @@ int main()
 
                 break;
             
-            // Painel de Hospedes
+            // Painel de Hospedes //////////////////////////////////////////////////////////////////////////////////////////////////
             case 1:
                 getchar();
                 painel_hospedes();
@@ -85,7 +85,7 @@ int main()
                 }
             break;
 
-            // Painel de Quartos
+            // Painel de Quartos //////////////////////////////////////////////////////////////////////////////////////////////////
             case 2:
                 getchar();
                 painel_quartos();
@@ -101,7 +101,7 @@ int main()
                 }
             break;
 
-            // Painel de reservas
+            // Painel de reservas //////////////////////////////////////////////////////////////////////////////////////////////////
             case 3:
                 getchar();
                 painel_reservas();
@@ -115,14 +115,30 @@ int main()
                         painel=0;
                         break;
                     
+                    case 1:
+                        criar_reserva();
+                        system(LIMPAR_TELA);
+                        break;
+
                     case 2:
                         system(LIMPAR_TELA);
                         listar_reservas();
                         break;
 
-                    case 1:
-                        criar_reserva();
+                    case 3:
                         system(LIMPAR_TELA);
+                        int id;
+                        printf("Digite o codigo da reserva (1-50)");
+                        scanf("%d", &id);
+                        if (id <= 0 || id > 50)
+                        {
+                            printf("Digite um valor valido\n");
+                            getchar();
+                            printf("Aperte Enter para Continuar;");
+                            getchar();
+                            break;
+                        }
+                        cancelar_reserva(id);
                         break;
                 }
             break;

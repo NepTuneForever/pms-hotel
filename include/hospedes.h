@@ -1,14 +1,11 @@
 #ifndef HOSPEDES_H
 #define HOSPEDES_H
 
-#include "quartos.h"
-
 typedef struct 
 {
     int id;
-    char *nome;
+    char nome[50];
     int idade;
-    quarto quarto;
 } hospede;
 
 void painel_hospedes();

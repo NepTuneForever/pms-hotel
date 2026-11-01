@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 #include "reservas.h"
+#include "hospedes.h"
 
 // OS //
 #ifdef _WIN32
@@ -77,6 +78,7 @@ void criar_reserva()
                 if (qtdp < 5)
                 {
                     res.quarto.nump = qtdp;
+                    getchar();
                     break;
                 }
             } while (aprovado);
@@ -94,29 +96,59 @@ void criar_reserva()
 
             printf("[ENTRADA] Digite o dia(1-31): ");
             scanf("%d", &dia_entrada);
+            getchar();
 
             printf("[ENTRADA] Digite o mes(1-12): ");
             scanf("%d", &mes_entrada);
+            getchar();
 
             printf("[ENTRADA] Digite o ano(XXXX): ");
             scanf("%d", &ano_entrada);
+            getchar();
 
             printf("[SAIDA] Digite o dia(1-31): ");
             scanf("%d", &dia_saida);
+            getchar();
 
             printf("[SAIDA] Digite o mes(1-12): ");
             scanf("%d", &mes_saida);
+            getchar();
 
             printf("[SAIDA] Digite o ano(XXXX): ");
             scanf("%d", &ano_saida);
+            getchar();
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            sprintf(res.data_entrada, "%02d/%02d/%d", dia_entrada, mes_entrada, ano_entrada);
-            sprintf(res.data_saida, "%02d/%02d/%d", dia_saida, mes_saida, ano_saida);
+            sprintf(res.data_entrada, "%02d/%02d/%04d", dia_entrada, mes_entrada, ano_entrada);
+            sprintf(res.data_saida, "%02d/%02d/%04d", dia_saida, mes_saida, ano_saida);
 
             res.status = RESERVA_OCUPADA;
             reservas[i] = res;
+
+            printf("----------------------------------------------------------------------\n");
+
+            for (int j = 0; j<qtdp; j++)
+            {
+                res.quarto.hospedes[j].id = j+1;
+                char nome[50];
+                int idade;
+
+                printf("Digite o nome do %d° hospede: ", j+1);
+                fgets(nome, sizeof(nome), stdin);
+
+                printf("Digite o idade do %d° hospede: ", j+1);
+                scanf("%d", &idade);
+
+                res.quarto.hospedes[j].idade = idade;
+                sprintf(res.quarto.hospedes[j].nome, "%s", nome);
+
+                cadastrar_hospede(j, nome, idade);
+
+                getchar();
+
+                res.quarto.hospedes[j].nome;
+            }
 
             printf("----------------------------------------------------------------------\n");
             printf("Reserva cadastrada no sistema!\n"

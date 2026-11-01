@@ -82,6 +82,11 @@ int main()
                         system(LIMPAR_TELA);
                         painel=0;
                         break;
+
+                    case 2:
+                        system(LIMPAR_TELA);
+                        listar_hospedes();
+                        break;
                 }
             break;
 

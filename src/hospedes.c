@@ -24,7 +24,7 @@ hospede cadastrar_hospede(int id, char nome[], int idade)
 {
     hospede hosp;
     hosp.id = id;
-    hosp.nome = nome;
+    snprintf(hosp.nome, sizeof(hosp.nome), "%s", nome);
     hosp.idade = idade;
 
     hospedes[id] = hosp;
@@ -58,12 +58,20 @@ void painel_hospedes()
 void listar_hospedes()
 {
 
-    for (int i = 1; i < MAX_HOSPEDES; i++)
+    for (int i = 0; i < MAX_HOSPEDES; i++)
     {
 
-        if (hospedes[i].id != 0) 
+        if (hospedes[i].id >= 0 && hospedes[i].idade)
         {
-            printf("%d %s %d\n", hospedes[i].id, hospedes[i].nome, hospedes[i].idade);
+            printf("Hospedes:\n"
+                   "Id: %d\n"
+                   "Nome: %s"
+                   "Idade: %d\n",
+                    hospedes[i].id,
+                    hospedes[i].nome,
+                    hospedes[i].idade
+            );
+            printf("----------------------------------------------------------------------\n");
         }
         
     }

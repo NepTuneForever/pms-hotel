@@ -12,5 +12,6 @@ void painel_hospedes();
 hospede cadastrar_hospede(int id, char nome[], int idade);
 void listar_hospedes();
 hospede buscar_hospede(int id);
+void limpar_hospede(int id);
 
 #endif

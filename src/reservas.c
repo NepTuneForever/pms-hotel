@@ -13,7 +13,7 @@
 #endif
 
 // José Paulo Romão //
-//
+
 void painel_reservas()
 {
     printf(
@@ -123,9 +123,6 @@ void criar_reserva()
             sprintf(res.data_entrada, "%02d/%02d/%04d", dia_entrada, mes_entrada, ano_entrada);
             sprintf(res.data_saida, "%02d/%02d/%04d", dia_saida, mes_saida, ano_saida);
 
-            res.status = RESERVA_OCUPADA;
-            reservas[i] = res;
-
             printf("----------------------------------------------------------------------\n");
 
             for (int j = 0; j<qtdp; j++)
@@ -150,13 +147,16 @@ void criar_reserva()
                 res.quarto.hospedes[j].nome;
             }
 
+            res.status = RESERVA_OCUPADA;
+            reservas[i] = res;
+
             printf("----------------------------------------------------------------------\n");
             printf("Reserva cadastrada no sistema!\n"
                    "Codigo da reserva: %d\n", res.cod);
-            getchar();
+            
             printf("Pressione Enter para continuar;");
             getchar();
-
+            
             break;
         }
     }
@@ -207,7 +207,14 @@ void cancelar_reserva(int id)
     if (res.cod)
     {
         Reserva temp = {0};
-        reservas[id - 1] = temp;
+        hospede hsp = {0};
+
+        for (int i=0;i<reservas[id-1].quarto.nump;i++)
+        {
+            limpar_hospede(reservas[id-1].quarto.hospedes[i].id-1);
+        }
+
+        reservas[id-1] = temp;
     }
 }
 

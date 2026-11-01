@@ -4,19 +4,16 @@
 #include "hospedes.h"
 #include "quartos.h"
 
-#define MAX_HOSPEDES 50
+#define MAX_HOSPEDES 200
+
+// OS //
+#ifdef _WIN32
+    #define LIMPAR_TELA "cls"
+#else
+    #define LIMPAR_TELA "clear"
+#endif
 
 // Filipe Paredes //
-
-/*
-
-TODO: 
-    cadastrar_hospede; /////////////////////
-    listar_hospedes; 
-    buscar_hospede; ////////////////////////
-    editar_hospedes;
-
-*/
 
 static hospede hospedes[MAX_HOSPEDES];
 
@@ -33,6 +30,22 @@ hospede cadastrar_hospede(int id, char nome[], int idade)
 
 hospede buscar_hospede(int id)
 {
+    system(LIMPAR_TELA);
+    printf("Hospede:\n"
+                "Id: %d\n"
+                "Nome: %s"
+                "Idade: %d\n",
+                hospedes[id].id+1,
+                hospedes[id].nome,
+                hospedes[id].idade
+            );
+
+    printf("----------------------------------------------------------------------\n");
+    
+    printf("Pressione Enter para continuar;\n");
+    getchar();
+
+    printf("----------------------------------------------------------------------\n");
     return hospedes[id];
 }
 
@@ -43,16 +56,24 @@ void painel_hospedes()
         "|                  PMS HOTEL - PAINEL DE HOSPEDES                |\n"
         "+================================================================+\n"
         "|                                                                |\n"
-        "|  [1] Cadastrar hospede                                         |\n"
-        "|  [2] Listar hospedes                                           |\n"
-        "|  [3] Buscar hospede                                            |\n"
-        "|  [4] Editar hospede                                            |\n"
+        "|  [1] Listar hospedes                                           |\n"
+        "|  [2] Buscar hospede                                            |\n"
+        "|  [3] Editar hospede                                            |\n"
         "|                                                                |\n"
         "|  [0] Voltar                                                    |\n"
         "|                                                                |\n"
         "+================================================================+\n"
         "  Selecione uma opcao: "
     );
+}
+
+void limpar_hospede(int id)
+{
+    if (hospedes[id].idade)
+    {
+        hospede hsp = {0};
+        hospedes[id] = hsp;
+    }
 }
 
 void listar_hospedes()

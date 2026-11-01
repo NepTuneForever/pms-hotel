@@ -83,10 +83,16 @@ int main()
                         painel=0;
                         break;
 
-                    case 2:
+                    case 1:
                         system(LIMPAR_TELA);
                         listar_hospedes();
                         break;
+
+                    case 2:
+                        int id;
+                        printf("Digite o id do Hospede(1-200): ");
+                        scanf("%d", &id);
+                        buscar_hospede(id-1);
                 }
             break;
 

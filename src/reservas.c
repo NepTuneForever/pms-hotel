@@ -220,11 +220,12 @@ void cancelar_reserva(int id)
 
 void realizar_check_in(int id)
 {
-
+    reservas[id-1].check = CHECKIN;
 }
 
 void realizar_check_out(int id)
 {
-
+    reservas[id-1].check = CHECKOUT;
+    cancelar_reserva(id);
 }
 

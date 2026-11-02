@@ -64,6 +64,16 @@ int main()
                         system(LIMPAR_TELA);
                         painel=3;
                         break;
+
+                    case 4:
+                        system(LIMPAR_TELA);
+                        painel=4;
+                        break;
+
+                    case 5:
+                        system(LIMPAR_TELA);
+                        painel=5;
+                        break;
                     
                 }
 
@@ -151,8 +161,43 @@ int main()
                         }
                         cancelar_reserva(id);
                         break;
+
+
                 }
             break;
+
+            case 4:
+                system(LIMPAR_TELA);
+                int id;
+                printf("Digite o codigo da reserva (1-50)");
+                scanf("%d", &id);
+                if (id <= 0 || id > 50)
+                    {
+                        printf("Digite um valor valido\n");
+                        printf("Aperte Enter para Continuar;");
+                        getchar();
+                        break;
+                    }
+                realizar_check_in(id);
+                painel=0;
+                break;
+
+            case 5:
+                system(LIMPAR_TELA);
+                int id3;
+                printf("Digite o codigo da reserva (1-50)");
+                scanf("%d", &id3);
+                    if (id3 <= 0 || id3 > 50)
+                    {
+                        printf("Digite um valor valido\n");
+                        getchar();
+                        printf("Aperte Enter para Continuar;");
+                        getchar();
+                        break;
+                    }
+                realizar_check_out(id3);
+                painel=0;
+                break;
         }
         
         

@@ -2,6 +2,7 @@
 #define QUARTOS_H
 
 #include "hospedes.h"
+#include <stdbool.h>
 
 typedef struct {
     char num[20]; // numero do quarto;

@@ -14,6 +14,12 @@
 
 // José Paulo Romão //
 
+/*
+pagar reserva
+frequencia de reservas (diaria/semanal)
+quartos suites, detalhatamento etc
+*/
+
 void painel_reservas()
 {
     printf(

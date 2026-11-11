@@ -5,6 +5,7 @@
 #define TAM_DATA 11
 
 #include "quartos.h"
+#include <stdio.h>
 #include <stdbool.h>
 
 typedef enum {

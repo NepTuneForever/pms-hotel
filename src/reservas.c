@@ -30,6 +30,7 @@ void painel_reservas()
         "|  [1] Criar reserva                                             |\n"
         "|  [2] Listar reservas                                           |\n"
         "|  [3] Cancelar reserva                                          |\n"
+        "|  [4] Listar Frequências                                        |\n"
         "|                                                                |\n"
         "|  [0] Voltar                                                    |\n"
         "|                                                                |\n"
@@ -163,10 +164,47 @@ void criar_reserva()
             printf("Pressione Enter para continuar;");
             getchar();
             
+            FILE* frequencia = fopen("./frequencia/frequencia.txt", "a+");
+            
+            if (frequencia != NULL)
+            {
+                fprintf(frequencia,
+                    "-------------------\n"
+                    "Data de Entrada: %s\n"
+                    "Data de Saída: %s\n"
+                    "Numero do quarto: %s\n"
+                    "Hospedes:\n",
+                    res.data_entrada,
+                    res.data_saida,
+                    res.quarto.num
+                );
+
+                for (int i = 0; i < qtdp; i++)
+                {
+                    fprintf(frequencia,
+                        "   Hospede: %02d\n"
+                        "   Nome: %s"
+                        "   Idade: %d anos\n",
+                        i+1,
+                        res.quarto.hospedes[i].nome,
+                        res.quarto.hospedes[i].idade
+                    );
+                }
+
+                fprintf(frequencia,
+                    "-------------------\n\n");
+
+                fclose(frequencia);
+            } 
+            else
+            {
+                perror("fudeu");
+            }
+
             break;
+
         }
     }
-
 }
 
 void listar_reservas()
@@ -204,6 +242,19 @@ void listar_reservas()
     getchar();
 
     system(LIMPAR_TELA);
+}
+
+void listar_frequencia()
+{
+    FILE* frequencia = fopen("./frequencia/frequencia.txt", "r");
+
+    int c;
+    while ((c = fgetc(frequencia)) != EOF)
+    {
+        putchar(c);
+    }
+
+    fclose(frequencia);
 }
 
 void cancelar_reserva(int id)

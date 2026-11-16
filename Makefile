@@ -7,6 +7,7 @@ INCLUDEDIR  := include # inclui o diretorio dos headers
 CFLAGS 	 	:= -g $(WARNINGS) -MMD -MP -I $(INCLUDEDIR)
 SRCFILES 	:= $(shell find $(PROJDIRS) -type f -name "*.c") # encontra todo o codigo c
 OBJFILES 	:= $(patsubst %.c,%.o,$(SRCFILES))
+DEPFILES 	:= $(patsubst %.c,%.d,$(SRCFILES))
 
 all: $(OBJFILES)
 	$(CC) $(CFLAGS) $(OBJFILES) $(LIBS) -o $(TARGET)
@@ -18,6 +19,6 @@ compdb: # regra pra o editor de codigo poder ajudar
 	bear --output compile_commands.json -- $(MAKE) clean all
 
 clean:
-	-@$(RM) $(wildcard $(OBJFILES) $(TARGET) compile_commands.json)
+	-@$(RM) $(wildcard $(OBJFILES) $(DEPFILES) $(TARGET) compile_commands.json)
 
 .PHONY: all clean compdb

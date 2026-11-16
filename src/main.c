@@ -162,6 +162,14 @@ int main()
                         cancelar_reserva(id);
                         break;
 
+                    case 4:
+                        listar_frequencia();
+                        getchar();
+                        printf("\nAperte Enter para Continuar;");
+                        getchar();
+                        system(LIMPAR_TELA);
+                        break;
+
 
                 }
             break;

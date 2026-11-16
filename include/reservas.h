@@ -32,6 +32,7 @@ typedef struct {
 void painel_reservas();
 void criar_reserva();
 void listar_reservas();
+void listar_frequencia();
 void cancelar_reserva(int id);
 void realizar_check_in(int id);
 void realizar_check_out(int id);

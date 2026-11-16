@@ -30,6 +30,7 @@ void painel_reservas()
         "|  [1] Criar reserva                                             |\n"
         "|  [2] Listar reservas                                           |\n"
         "|  [3] Cancelar reserva                                          |\n"
+        "|  [4] Listar Frequências                                        |\n"
         "|                                                                |\n"
         "|  [0] Voltar                                                    |\n"
         "|                                                                |\n"
@@ -241,6 +242,19 @@ void listar_reservas()
     getchar();
 
     system(LIMPAR_TELA);
+}
+
+void listar_frequencia()
+{
+    FILE* frequencia = fopen("./frequencia/frequencia.txt", "r");
+
+    int c;
+    while ((c = fgetc(frequencia)) != EOF)
+    {
+        putchar(c);
+    }
+
+    fclose(frequencia);
 }
 
 void cancelar_reserva(int id)

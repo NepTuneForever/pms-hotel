@@ -20,6 +20,42 @@ frequencia de reservas (diaria/semanal)
 quartos suites, detalhatamento etc
 */
 
+// funcoes auxiliares pra ajudar no pagamento
+static bool ano_bissexto(int ano)
+{
+    return (ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0;
+}
+
+static int dias_no_mes(int mes, int ano)
+{
+    int dias[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    if (mes == 2 && ano_bissexto(ano))
+    {
+        return 29;
+    }
+
+    return dias[mes - 1];
+}
+
+// dias contados desde 01/01/1900 (que vale 1)
+static int dias_desde_epoca(int dia, int mes, int ano)
+{
+    int total = 0;
+
+    for (int a = 1900; a < ano; a++)
+    {
+        total += ano_bissexto(a) ? 366 : 365;
+    }
+
+    for (int m = 1; m < mes; m++)
+    {
+        total += dias_no_mes(m, ano);
+    }
+
+    return total + dia;
+}
+
 void painel_reservas()
 {
     printf(
@@ -31,6 +67,7 @@ void painel_reservas()
         "|  [2] Listar reservas                                           |\n"
         "|  [3] Cancelar reserva                                          |\n"
         "|  [4] Listar Frequências                                        |\n"
+        "|  [5] Pagar reserva                                             |\n"
         "|                                                                |\n"
         "|  [0] Voltar                                                    |\n"
         "|                                                                |\n"
@@ -42,6 +79,51 @@ void painel_reservas()
 static Reserva reservas[MAX_RESERVAS];
 int atual = 0;
 
+void pagar_reserva(int id)
+{
+    getchar();
+
+    if (reservas[id - 1].status != RESERVA_OCUPADA) {
+        printf("Reserva nao encontrada;\n");
+        printf("Pressione Enter para continuar;");
+        getchar();
+        return;
+    }
+
+    int restante = reservas[id - 1].valor_total - reservas[id - 1].valor_pago;
+
+    printf("Valor total: R$ %d\n"
+           "Valor pago: R$ %d\n"
+           "Restante: R$ %d\n",
+           reservas[id - 1].valor_total,
+           reservas[id - 1].valor_pago,
+           restante);
+
+    if (restante <= 0) {
+        printf("Reserva ja esta paga;\n");
+        printf("Pressione Enter para continuar;");
+        getchar();
+        return;
+    }
+
+    int valor;
+    printf("Digite o valor a pagar: ");
+    scanf("%d", &valor);
+    getchar();
+
+    if (valor <= 0 || valor > restante) {
+        printf("Insira um valor valido;\n");
+    }
+    else {
+        reservas[id - 1].valor_pago += valor;
+        printf("Pagamento registrado! Restante: R$ %d\n", restante - valor);
+    }
+
+    printf("Pressione Enter para continuar;");
+    getchar();
+}
+
+
 void criar_reserva()
 {  
     for (int i = 0; i < MAX_RESERVAS; ++i)
@@ -49,7 +131,7 @@ void criar_reserva()
         if (reservas[i].status != RESERVA_OCUPADA)
         {
 
-            Reserva res;
+            Reserva res = {0};
 
             if (i < 9) 
             {
@@ -67,7 +149,7 @@ void criar_reserva()
 
             bool aprovado = false;
             int qtdp;
-
+            
             do
             {
                 printf("Digite a quantidade de pessoas(1-4): ");
@@ -101,6 +183,23 @@ void criar_reserva()
             int ano_entrada;
             int ano_saida;
 
+            int suite;
+            do {
+                printf("Deseja ter acesso a suite da reserva? [1-Sim/0-Nao]: ");
+                scanf("%d", &suite);
+                getchar();
+
+                if (suite < 0 || suite > 1) {
+                    printf("Valor invalido!\n");
+                    printf("Pressione enter para continuar.\n");
+                    getchar();
+                }
+            } while (suite < 0 || suite > 1);
+
+            // utilizando o campo bool do struct quarto pra n ter que criar uma 
+            // variavel local e poluir mais ainda a funca
+            res.quarto.com_suite = suite == 0 ? false : true;
+
             printf("[ENTRADA] Digite o dia(1-31): ");
             scanf("%d", &dia_entrada);
             getchar();
@@ -124,7 +223,17 @@ void criar_reserva()
             printf("[SAIDA] Digite o ano(XXXX): ");
             scanf("%d", &ano_saida);
             getchar();
-
+            
+            // inicio do pagamento
+            int noites = dias_desde_epoca(dia_saida, mes_saida, ano_saida)
+                        - dias_desde_epoca(dia_entrada, mes_entrada, ano_entrada);
+            
+            if (res.quarto.com_suite) {
+                res.valor_total = noites * PRECO_SUITE;
+            } else {
+                res.valor_total = noites * PRECO_BASE;
+            }
+            res.valor_pago = 0;
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             sprintf(res.data_entrada, "%02d/%02d/%04d", dia_entrada, mes_entrada, ano_entrada);
@@ -151,7 +260,7 @@ void criar_reserva()
 
                 getchar();
 
-                res.quarto.hospedes[j].nome;
+                // res.quarto.hospedes[j].nome;
             }
 
             res.status = RESERVA_OCUPADA;
@@ -198,7 +307,8 @@ void criar_reserva()
             } 
             else
             {
-                perror("fudeu");
+                perror("Erro ao abrir report de frequencia. Abortando programa.");
+                exit(EXIT_FAILURE); // padrao para error. Eh como se main retornasse -1
             }
 
             break;
@@ -226,13 +336,17 @@ void listar_reservas()
                 "Numero Quarto: %s\n"
                 "Data Entrada: %s\n"
                 "Data Saida: %s\n"
-                "Status: %s\n", 
-                    res.cod, 
+                "Status: %s\n"
+                "Valor a pagar: %d\n"
+                "Valor encaminhado: %d\n",
+                    res.cod,
                     res.cod_hospede, 
                     res.quarto.num, 
                     res.data_entrada, 
-                    res.data_saida, 
-                    status);
+                    res.data_saida,
+                    status,
+                    res.valor_total,
+                    res.valor_pago);
         printf("----------------------------------------------------------------------\n");
 
     }
@@ -247,6 +361,11 @@ void listar_reservas()
 void listar_frequencia()
 {
     FILE* frequencia = fopen("./frequencia/frequencia.txt", "r");
+
+    if (frequencia == NULL) {
+        printf("Nenhuma frequencia registrada\n");
+        return;
+    }
 
     int c;
     while ((c = fgetc(frequencia)) != EOF)

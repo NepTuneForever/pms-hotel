@@ -9,6 +9,7 @@ typedef struct {
     int capmax; // capacidade maxima;
     int nump; // numero de pessoas;
     hospede hospedes[4];
+    bool com_suite;
 } quarto;
 
 void painel_quartos();

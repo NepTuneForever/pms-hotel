@@ -1,0 +1,46 @@
+-------------------
+Data de Entrada: 30/01/2028
+Data de Saída: 21/03/2028
+Numero do quarto: 001
+Hospedes:
+   Hospede: 01
+   Nome: Pedro
+   Idade: 22 anos
+   Hospede: 02
+   Nome: Julia
+   Idade: 21 anos
+-------------------
+
+-------------------
+Data de Entrada: 03/02/2027
+Data de Saída: 06/02/2027
+Numero do quarto: 001
+Hospedes:
+   Hospede: 01
+   Nome: Pedro
+   Idade: 32764 anos
+   Hospede: 02
+   Nome: oana
+   Idade: 32764 anos
+-------------------
+
+-------------------
+Data de Entrada: 03/02/2027
+Data de Saída: 07/02/2027
+Numero do quarto: 001
+Hospedes:
+   Hospede: 01
+   Nome: Pedro
+   Idade: 23 anos
+-------------------
+
+-------------------
+Data de Entrada: 02/03/2027
+Data de Saída: 03/03/2027
+Numero do quarto: 001
+Hospedes:
+   Hospede: 01
+   Nome: Pedro
+   Idade: 44 anos
+-------------------
+

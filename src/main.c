@@ -196,8 +196,23 @@ int main()
                         getchar();
                         system(LIMPAR_TELA);
                         break;
+                    
+                    case 5:
+                        system(LIMPAR_TELA);
+                        int id_pagar;
+                        printf("Digite o codigo da reservar (1-50)\n");
+                        scanf("%d", &id_pagar);
 
-
+                        if (id_pagar <= 0 || id_pagar >= 50) {
+                            printf("Digite um valor valido\n");
+                            getchar();
+                            printf("Aperte Enter para Continuar;");
+                            getchar();
+                            break;
+                        }
+                        pagar_reserva(id_pagar);
+                        system(LIMPAR_TELA);
+                        break;
                 }
             break;
 

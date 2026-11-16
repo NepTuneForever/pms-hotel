@@ -119,6 +119,33 @@ int main()
                         system(LIMPAR_TELA);
                         painel=0;
                         break;
+
+                    case 1:
+                        system(LIMPAR_TELA);
+                        listar_quartos();
+                        system("pause");
+                        system(LIMPAR_TELA);
+                        break;
+
+                    case 2:
+                        int numero;
+
+                        system(LIMPAR_TELA);
+                        printf("Digite o numero do quarto: ");
+                        scanf("%d", &numero);
+
+                        buscar_quarto(numero);
+
+                        system("pause");
+                        system(LIMPAR_TELA);
+                        break;
+
+                    case 3:
+                        system(LIMPAR_TELA);
+                        consultar_quartos();
+                        system("pause");
+                        system(LIMPAR_TELA);
+                        break;
                 }
             break;
 

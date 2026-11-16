@@ -286,3 +286,18 @@ void realizar_check_out(int id)
     cancelar_reserva(id);
 }
 
+Reserva obter_reserva_quarto(int numero)
+{
+    Reserva vazia = {0};
+
+    for (int i = 0; i < MAX_RESERVAS; i++)
+    {
+        if (reservas[i].status == RESERVA_OCUPADA &&
+            atoi(reservas[i].quarto.num) == numero)
+        {
+            return reservas[i];
+        }
+    }
+
+    return vazia;
+}

@@ -36,5 +36,6 @@ void listar_frequencia();
 void cancelar_reserva(int id);
 void realizar_check_in(int id);
 void realizar_check_out(int id);
+Reserva obter_reserva_quarto(int numero);
 
 #endif

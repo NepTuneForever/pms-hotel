@@ -360,6 +360,7 @@ void listar_reservas()
 
 void listar_frequencia()
 {
+    system(LIMPAR_TELA);
     FILE* frequencia = fopen("./frequencia/frequencia.txt", "r");
 
     if (frequencia == NULL) {

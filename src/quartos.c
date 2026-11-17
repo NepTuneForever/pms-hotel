@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include "quartos.h"
 #include "reservas.h"
@@ -20,28 +19,26 @@ void painel_quartos()
 
 void listar_quartos()
 {
-    int encontrou = 0;
-
     printf("\n===== QUARTOS CADASTRADOS =====\n");
 
     for (int i = 1; i <= MAX_RESERVAS; i++)
     {
         Reserva res = obter_reserva_quarto(i);
 
+        printf("Quarto: %03d\n", i);
+        printf("Capacidade: 4\n");
+
         if (res.status == RESERVA_OCUPADA)
         {
-            printf("Quarto: %s\n", res.quarto.num);
-            printf("Capacidade: %d\n", res.quarto.capmax);
             printf("Hospedes: %d\n", res.quarto.nump);
-            printf("--------------------\n");
-
-            encontrou = 1;
+            printf("Status: Ocupado\n");
         }
-    }
+        else
+        {
+            printf("Status: Disponivel\n");
+        }
 
-    if (!encontrou)
-    {
-        printf("Nenhum quarto cadastrado.\n");
+        printf("--------------------\n");
     }
 }
 
@@ -49,20 +46,30 @@ quarto buscar_quarto(int numero)
 {
     quarto q = {0};
 
-    Reserva res = obter_reserva_quarto(numero);
-
-    if (res.status != RESERVA_OCUPADA)
+    if (numero < 1 || numero > MAX_RESERVAS)
     {
         printf("Quarto nao encontrado.\n");
         return q;
     }
 
-    q = res.quarto;
+    Reserva res = obter_reserva_quarto(numero);
 
     printf("\n===== QUARTO =====\n");
-    printf("Numero: %s\n", q.num);
-    printf("Capacidade: %d\n", q.capmax);
-    printf("Hospedes: %d\n", q.nump);
+    printf("Numero: %03d\n", numero);
+    printf("Capacidade: 4\n");
+
+    if (res.status == RESERVA_OCUPADA)
+    {
+        q = res.quarto;
+        printf("Hospedes: %d\n", q.nump);
+        printf("Status: Ocupado\n");
+    }
+    else
+    {
+        sprintf(q.num, "%03d", numero);
+        q.capmax = 4;
+        printf("Status: Disponivel\n");
+    }
 
     return q;
 }
@@ -87,7 +94,7 @@ void consultar_quartos()
     {
         Reserva res = obter_reserva_quarto(i);
 
-        if (res.status != RESERVA_OCUPADA)
+        if (res.status != RESERVA_OCUPADA && res.quarto.capmax >= quantidade)
         {
             printf("Quarto %03d - Capacidade: 4\n", i);
             encontrou = 1;

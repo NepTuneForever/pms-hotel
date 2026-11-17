@@ -49,6 +49,39 @@ hospede buscar_hospede(int id)
     return hospedes[id];
 }
 
+void editar_hospede(int id)
+{
+    system(LIMPAR_TELA);
+
+    if (id < 0 || id >= MAX_HOSPEDES || hospedes[id].idade == 0)
+    {
+        printf("Hospede nao encontrado!\n");
+    }
+    else
+    {
+        printf("Editar hospede:\n"
+               "Nome atual: %s"
+               "Idade atual: %d\n",
+               hospedes[id].nome,
+               hospedes[id].idade
+        );
+
+        printf("Novo nome: ");
+        getchar();
+        fgets(hospedes[id].nome, sizeof(hospedes[id].nome), stdin);
+
+        printf("Nova idade: ");
+        scanf("%d", &hospedes[id].idade);
+
+        printf("\nHospede atualizado com sucesso!\n");
+    }
+
+    printf("----------------------------------------------------------------------\n");
+    printf("Pressione Enter para continuar;\n");
+    getchar();
+    getchar();
+}
+
 void painel_hospedes()
 {
     printf(
